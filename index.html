@@ -26,7 +26,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Navigation -->
-    <nav id="navbar" class="navbar navbar-expand-lg" data-bs-theme="dark">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo-sm-white.png" alt="Boardwalk Games logo" class="logo">
@@ -41,7 +41,7 @@
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a href="#events" class="nav-link">Events</a>
@@ -81,7 +81,7 @@
                                 alt="The inside of Boardwalk Games with bookshelves filled with boardgames, and wooden tables to play at">
                         </div>
                         <div class="carousel-item">
-                            <img src="assets/images/boardwalk-games-carousel-image-2.webp" class="d-block w-100"
+                            <img src="assets/images/boardwalk-games-carousel-image-2.png" class="d-block w-100"
                                 alt="The inside of Boardwalk Games with bookshelves filled with boardgames, and wooden tables to play at">
                         </div>
                         <div class="carousel-item">
@@ -161,7 +161,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-xl-3">
                     <div class="card">
-                        <img src="assets/images/services-3.webp" class="card-img-top">
+                        <img src="assets/images/services-3.webp" class="card-img-top" alt="A chess tournament being held at Boardwalk Games">
                         <div class="card-body">
                             <h3 class="card-title sub-heading-color">Events</h3>
                             <p class="card-text">
@@ -325,7 +325,27 @@
 
     <!-- Font Awesome kit -->
     <script src="https://kit.fontawesome.com/ad8754aeee.js" crossorigin="anonymous"></script>
-
+    <!-- JavaScript code to ensure the Bootstrap mobile navbar collapses when navigating to in-page links -->
+    <script>
+        document
+            .querySelectorAll(".navbar-collapse .nav-link")
+            .forEach((link) => {
+                link.addEventListener("click", function (e) {
+                    let section = document.querySelector(e.target.getAttribute("href"));
+                    if (section) {
+                        e.preventDefault(); // Prevent default anchor click behavior
+                        let navbarHeight = document.querySelector(".navbar-toggler").offsetHeight;
+                        window.scroll({
+                            top: section.offsetTop - navbarHeight, // Adjust for navbar height
+                            behavior: "smooth",
+                        });
+                        document
+                            .querySelector(".navbar-collapse")
+                            .classList.remove("show"); // Collapse navbar
+                    }
+                });
+            });
+    </script>
 </body>
 
 </html>
